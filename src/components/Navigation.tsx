@@ -7,9 +7,9 @@ interface NavigationProps {
 const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
   const navItems = [
     { id: "home", label: "Home" },
-    { id: "inventory", label: "Inventory" },
-    { id: "blog", label: "Blog" },
-    { id: "connect", label: "Connect" }
+    { id: "inventory", label: "Goods" },
+    { id: "blog", label: "Broll" },
+    { id: "connect", label: "Reach Out" }
   ];
 
   return (
