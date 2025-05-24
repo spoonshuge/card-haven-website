@@ -1,3 +1,4 @@
+
 import { Instagram, Twitter, Mail } from "lucide-react";
 interface FooterProps {
   onSectionChange: (section: string) => void;
@@ -18,9 +19,13 @@ const Footer = ({
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-              spoonLabs
-            </h3>
+            <div className="flex items-center mb-4">
+              <img 
+                src="/lovable-uploads/8df2445d-7b6c-4df4-83b6-3e10d868151b.png" 
+                alt="spoonLabs logo" 
+                className="h-8 w-auto"
+              />
+            </div>
             <p className="text-gray-400">
               Your source for ramblings and gems.
             </p>
