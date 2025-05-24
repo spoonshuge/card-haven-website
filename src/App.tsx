@@ -19,7 +19,7 @@ const App = () => (
           style={{
             backgroundImage: `
               radial-gradient(circle at center, transparent 40%, rgba(34, 197, 94, 0.3) 70%, rgba(34, 197, 94, 0.6) 100%),
-              url('/lovable-uploads/38c50f42-6889-4324-bfaa-2414a23b8d92.png')
+              url('/card-haven-website/lovable-uploads/38c50f42-6889-4324-bfaa-2414a23b8d92.png')
             `,
             backgroundSize: 'contain',
             backgroundPosition: 'center center'
@@ -33,7 +33,7 @@ const App = () => (
         <div className="relative min-h-screen bg-black/20 backdrop-blur-[1px] z-10">
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <BrowserRouter basename="/card-haven-website">
             <Routes>
               <Route path="/" element={<Index />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
