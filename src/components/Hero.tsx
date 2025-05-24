@@ -25,8 +25,7 @@ const Hero = ({ onBrowseClick }: HeroProps) => {
             <span 
               className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400"
               style={{
-                WebkitTextStroke: '2px black',
-                textStroke: '2px black'
+                WebkitTextStroke: '2px black'
               }}
             >
               spoonLabs.cards
@@ -35,8 +34,7 @@ const Hero = ({ onBrowseClick }: HeroProps) => {
           <p 
             className="text-xl md:text-2xl max-w-3xl mx-auto drop-shadow-lg leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400"
             style={{
-              WebkitTextStroke: '1px black',
-              textStroke: '1px black'
+              WebkitTextStroke: '1px black'
             }}
           >
             Discover rare and valuable trading cards from Pokemon, Magic: The Gathering, Yu-Gi-Oh!, and more. 
