@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import FeaturedCards from "@/components/FeaturedCards";
@@ -7,10 +8,29 @@ import Footer from "@/components/Footer";
 import InventorySection from "@/components/InventorySection";
 import BlogSection from "@/components/BlogSection";
 import ConnectSection from "@/components/ConnectSection";
-import { mockCards, mockBlogPosts } from "@/data/mockData";
+import { mockCards } from "@/data/mockData";
+import { fetchBlogFromSheet, type SheetBlogPost } from "@/utils/googleSheets";
 
 const Index = () => {
   const [currentSection, setCurrentSection] = useState("home");
+  const [blogPosts, setBlogPosts] = useState<SheetBlogPost[]>([]);
+  const [isLoadingBlog, setIsLoadingBlog] = useState(false);
+
+  useEffect(() => {
+    const loadBlogPosts = async () => {
+      setIsLoadingBlog(true);
+      try {
+        const posts = await fetchBlogFromSheet();
+        setBlogPosts(posts);
+      } catch (error) {
+        console.error('Failed to load blog posts:', error);
+      } finally {
+        setIsLoadingBlog(false);
+      }
+    };
+
+    loadBlogPosts();
+  }, []);
 
   const renderHome = () => (
     <div className="space-y-32">
@@ -25,7 +45,7 @@ const Index = () => {
       case "inventory":
         return <InventorySection />;
       case "blog":
-        return <BlogSection posts={mockBlogPosts} />;
+        return <BlogSection posts={blogPosts} isLoading={isLoadingBlog} />;
       case "connect":
         return <ConnectSection />;
       default:

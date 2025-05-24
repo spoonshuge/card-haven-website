@@ -1,21 +1,40 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  slug: string;
-  image: string;
-}
+import { type SheetBlogPost } from "@/utils/googleSheets";
 
 interface BlogSectionProps {
-  posts: BlogPost[];
+  posts: SheetBlogPost[];
+  isLoading?: boolean;
 }
 
-const BlogSection = ({ posts }: BlogSectionProps) => {
+const BlogSection = ({ posts, isLoading = false }: BlogSectionProps) => {
+  if (isLoading) {
+    return (
+      <div className="space-y-8">
+        <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
+          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">spoonLabs Broll</h1>
+          <p className="text-xl text-gray-700">Loading latest posts...</p>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[1, 2, 3].map((i) => (
+            <Card key={i} className="animate-pulse bg-white/95 backdrop-blur-sm">
+              <CardHeader className="p-0">
+                <div className="w-full h-48 bg-gray-300 rounded-t-lg"></div>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="h-4 bg-gray-300 rounded mb-2"></div>
+                <div className="h-3 bg-gray-200 rounded mb-4"></div>
+                <div className="h-3 bg-gray-200 rounded mb-4"></div>
+                <div className="h-8 bg-gray-300 rounded"></div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8">
       <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
