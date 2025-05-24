@@ -1,20 +1,18 @@
-
 import { Instagram, Twitter, Mail } from "lucide-react";
-
 interface FooterProps {
   onSectionChange: (section: string) => void;
 }
-
-const Footer = ({ onSectionChange }: FooterProps) => {
-  return (
-    <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 mt-16 relative overflow-hidden">
+const Footer = ({
+  onSectionChange
+}: FooterProps) => {
+  return <footer className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-12 mt-16 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(45deg, transparent 35%, rgba(16, 185, 129, 0.1) 35%, rgba(16, 185, 129, 0.1) 65%, transparent 65%),
+        backgroundImage: `linear-gradient(45deg, transparent 35%, rgba(16, 185, 129, 0.1) 35%, rgba(16, 185, 129, 0.1) 65%, transparent 65%),
                            linear-gradient(-45deg, transparent 35%, rgba(59, 130, 246, 0.1) 35%, rgba(59, 130, 246, 0.1) 65%, transparent 65%)`,
-          backgroundSize: '60px 60px'
-        }}></div>
+        backgroundSize: '60px 60px'
+      }}></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
@@ -31,26 +29,15 @@ const Footer = ({ onSectionChange }: FooterProps) => {
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <button 
-                  onClick={() => onSectionChange("inventory")} 
-                  className="hover:text-green-400 transition-colors duration-300 hover:underline"
-                >
+                <button onClick={() => onSectionChange("inventory")} className="hover:text-green-400 transition-colors duration-300 hover:underline">
                   Browse Dimes
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => onSectionChange("blog")} 
-                  className="hover:text-green-400 transition-colors duration-300 hover:underline"
-                >
-                  Read Broll
-                </button>
+                <button onClick={() => onSectionChange("blog")} className="hover:text-green-400 transition-colors duration-300 hover:underline">Read my Ramblings</button>
               </li>
               <li>
-                <button 
-                  onClick={() => onSectionChange("connect")} 
-                  className="hover:text-green-400 transition-colors duration-300 hover:underline"
-                >
+                <button onClick={() => onSectionChange("connect")} className="hover:text-green-400 transition-colors duration-300 hover:underline">
                   Reach Out
                 </button>
               </li>
@@ -75,8 +62,6 @@ const Footer = ({ onSectionChange }: FooterProps) => {
           <p>&copy; 2024 spoonLabs. All rights reserved.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
