@@ -42,12 +42,6 @@ const InventorySection = () => {
   if (loading) {
     return (
       <div className="space-y-6">
-        <div className="text-center bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-green-200/50 shadow-lg">
-          <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-            Card Inventory
-          </h1>
-          <p className="text-lg text-gray-700">Loading our complete collection...</p>
-        </div>
         <div className="flex justify-center items-center py-8">
           <div className="text-lg text-gray-500">Loading inventory...</div>
         </div>
@@ -57,15 +51,8 @@ const InventorySection = () => {
 
   return (
     <div className="space-y-6">
-      {/* Combined header, search, and results count */}
-      <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-green-200/50 shadow-lg space-y-4">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-            Card Inventory
-          </h1>
-          <p className="text-lg text-gray-700">Browse our complete collection of trading cards</p>
-        </div>
-
+      {/* Floating search and filter controls */}
+      <div className="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-green-200/50 shadow-lg sticky top-20 z-40">
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -73,24 +60,25 @@ const InventorySection = () => {
               placeholder="Search cards..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 border-green-200 focus:border-green-400 bg-white/60"
+              className="pl-10 border-green-200 focus:border-green-400 bg-white/80"
             />
           </div>
-          <select
-            value={selectedRarity}
-            onChange={(e) => setSelectedRarity(e.target.value)}
-            className="px-4 py-2 border border-green-200 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white/60"
-          >
-            {rarities.map(rarity => (
-              <option key={rarity} value={rarity}>
-                {rarity === "all" ? "All Rarities" : rarity}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="text-sm text-gray-600">
-          Showing {filteredCards.length} of {cards.length} cards
+          <div className="flex items-center gap-4">
+            <select
+              value={selectedRarity}
+              onChange={(e) => setSelectedRarity(e.target.value)}
+              className="px-4 py-2 border border-green-200 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white/80"
+            >
+              {rarities.map(rarity => (
+                <option key={rarity} value={rarity}>
+                  {rarity === "all" ? "All Rarities" : rarity}
+                </option>
+              ))}
+            </select>
+            <div className="text-sm text-gray-600 whitespace-nowrap">
+              {filteredCards.length} of {cards.length} cards
+            </div>
+          </div>
         </div>
       </div>
 
