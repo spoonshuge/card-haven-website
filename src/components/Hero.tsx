@@ -18,7 +18,7 @@ const Hero = ({ onBrowseClick }: HeroProps) => {
       </div>
       
       {/* Content floating above image */}
-      <div className="relative container mx-auto px-6 z-10">
+      <div className="relative container mx-auto px-6 z-10 flex flex-col items-center">
         {/* Black box around title that shrinks to fit */}
         <div className="inline-block bg-black/90 backdrop-blur-sm rounded-2xl p-8 mb-8 border-2 border-white shadow-2xl">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-2xl animate-fade-in break-words">
