@@ -12,6 +12,14 @@ const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
     { id: "connect", label: "Reach Out" }
   ];
 
+  const getPageTitle = () => {
+    if (currentSection === "blog") return "Blog";
+    if (currentSection === "connect") return "Reach Out";
+    return null;
+  };
+
+  const pageTitle = getPageTitle();
+
   return (
     <nav className="bg-gray-900/95 backdrop-blur-sm shadow-sm border-b border-gray-700 sticky top-0 z-50">
       <div className="container mx-auto px-6">
@@ -26,6 +34,15 @@ const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
               className="h-10 w-auto"
             />
           </button>
+          
+          {/* Page Title */}
+          {pageTitle && (
+            <div className="flex-1 text-center">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                {pageTitle}
+              </h1>
+            </div>
+          )}
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
