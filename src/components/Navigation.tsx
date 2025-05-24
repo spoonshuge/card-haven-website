@@ -18,9 +18,13 @@ const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
         <div className="flex justify-between items-center h-16">
           <button
             onClick={() => onSectionChange("home")}
-            className="text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent hover:from-green-300 hover:to-blue-300 transition-all duration-300"
+            className="flex items-center hover:opacity-80 transition-opacity duration-300"
           >
-            spoonLabs
+            <img 
+              src="/lovable-uploads/8df2445d-7b6c-4df4-83b6-3e10d868151b.png" 
+              alt="spoonLabs logo" 
+              className="h-10 w-auto"
+            />
           </button>
           
           {/* Desktop Navigation */}
