@@ -10,8 +10,8 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  // Only use basename in production (GitHub Pages)
-  const basename = import.meta.env.PROD ? "/card-haven-website" : "";
+  // No basename needed for custom domain
+  const basename = "";
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -23,7 +23,7 @@ const App = () => {
             style={{
               backgroundImage: `
                 radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.1) 70%, rgba(0, 0, 0, 0.3) 100%),
-                url('${basename}/lovable-uploads/38c50f42-6889-4324-bfaa-2414a23b8d92.png')
+                url('/lovable-uploads/38c50f42-6889-4324-bfaa-2414a23b8d92.png')
               `,
               backgroundSize: 'contain',
               backgroundPosition: 'center center'
