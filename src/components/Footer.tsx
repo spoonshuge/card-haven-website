@@ -21,10 +21,10 @@ const Footer = ({ onSectionChange }: FooterProps) => {
         <div className="grid md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-              Elite Card Collectibles
+              spoonLabs
             </h3>
             <p className="text-gray-400">
-              Your trusted source for authentic trading cards and collectibles.
+              Your source for ramblings and gems.
             </p>
           </div>
           <div>
@@ -35,7 +35,7 @@ const Footer = ({ onSectionChange }: FooterProps) => {
                   onClick={() => onSectionChange("inventory")} 
                   className="hover:text-green-400 transition-colors duration-300 hover:underline"
                 >
-                  Browse Inventory
+                  Browse Dimes
                 </button>
               </li>
               <li>
@@ -43,7 +43,7 @@ const Footer = ({ onSectionChange }: FooterProps) => {
                   onClick={() => onSectionChange("blog")} 
                   className="hover:text-green-400 transition-colors duration-300 hover:underline"
                 >
-                  Read Blog
+                  Read Broll
                 </button>
               </li>
               <li>
@@ -51,7 +51,7 @@ const Footer = ({ onSectionChange }: FooterProps) => {
                   onClick={() => onSectionChange("connect")} 
                   className="hover:text-green-400 transition-colors duration-300 hover:underline"
                 >
-                  Contact Us
+                  Reach Out
                 </button>
               </li>
             </ul>
@@ -72,7 +72,7 @@ const Footer = ({ onSectionChange }: FooterProps) => {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Elite Card Collectibles. All rights reserved.</p>
+          <p>&copy; 2024 spoonLabs. All rights reserved.</p>
         </div>
       </div>
     </footer>
