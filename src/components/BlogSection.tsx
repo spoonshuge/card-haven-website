@@ -9,16 +9,16 @@ interface BlogSectionProps {
 }
 
 const LoadingSkeleton = () => (
-  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
     {Array.from({ length: 3 }, (_, i) => (
-      <Card key={i} className="animate-pulse bg-white/95 backdrop-blur-sm">
+      <Card key={i} className="animate-pulse bg-white/85 backdrop-blur-sm">
         <CardHeader className="p-0">
           <div className="w-full h-48 bg-gray-300 rounded-t-lg" />
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent className="p-4">
           <div className="h-4 bg-gray-300 rounded mb-2" />
-          <div className="h-3 bg-gray-200 rounded mb-4" />
-          <div className="h-3 bg-gray-200 rounded mb-4" />
+          <div className="h-3 bg-gray-200 rounded mb-3" />
+          <div className="h-3 bg-gray-200 rounded mb-3" />
           <div className="h-8 bg-gray-300 rounded" />
         </CardContent>
       </Card>
@@ -27,11 +27,11 @@ const LoadingSkeleton = () => (
 );
 
 const BlogHeader = ({ isLoading }: { isLoading: boolean }) => (
-  <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
-    <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+  <div className="text-center bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-green-200/50 shadow-lg">
+    <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
       spoonLabs Broll
     </h1>
-    <p className="text-xl text-gray-700">
+    <p className="text-lg text-gray-700">
       {isLoading ? "Loading latest posts..." : "Tips, news, and insights from the trading card world"}
     </p>
   </div>
@@ -39,17 +39,17 @@ const BlogHeader = ({ isLoading }: { isLoading: boolean }) => (
 
 const BlogSection = ({ posts, isLoading = false }: BlogSectionProps) => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <BlogHeader isLoading={isLoading} />
       
       {isLoading ? (
         <LoadingSkeleton />
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
             <Card 
               key={post.id} 
-              className="hover:shadow-2xl transition-all duration-300 border-green-200/50 hover:border-green-400 bg-white/95 backdrop-blur-sm transform hover:-translate-y-2"
+              className="hover:shadow-xl transition-all duration-300 border-green-200/50 hover:border-green-400 bg-white/85 backdrop-blur-sm transform hover:-translate-y-2"
             >
               <CardHeader className="p-0">
                 <img 
@@ -58,10 +58,10 @@ const BlogSection = ({ posts, isLoading = false }: BlogSectionProps) => {
                   className="w-full h-48 object-cover rounded-t-lg"
                 />
               </CardHeader>
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <CardTitle className="text-lg mb-2">{post.title}</CardTitle>
-                <p className="text-sm text-gray-500 mb-4">{post.date}</p>
-                <CardDescription className="mb-4">{post.excerpt}</CardDescription>
+                <p className="text-sm text-gray-500 mb-3">{post.date}</p>
+                <CardDescription className="mb-3">{post.excerpt}</CardDescription>
                 <Button variant="outline" className="w-full border-green-200 text-green-700 hover:bg-green-50">
                   Read More
                 </Button>
