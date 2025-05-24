@@ -36,12 +36,18 @@ const AboutSection = () => {
       
       <div className="container mx-auto px-6 text-center relative z-10">
         <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-          About Elite Card Collectibles
+          About spoonLabs
         </h2>
         <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
-          With over 10 years of experience in the trading card industry, we specialize in authentic, 
-          high-quality collectibles. Every card in our inventory is carefully inspected and graded 
-          for condition to ensure you get exactly what you expect.
+          Look it seems to me that no one really has a clue and we are all just winging it. Come see how
+          I wing. Child of the JunkWax era and loved it. I still think about the Greg Maddux Upper Deck Spx,
+          it came out of a box Dad bought for Christmas. 
+
+          Late 2024 I caugh the bug, bought way to much wax and set more money on fire with breaks. I have been trying
+          to figure out the "right" way to participate in collecting ever sense. 
+
+          I have bought a ton more, or course. On the other hand, I have sold across several platforms, a trade night,
+          and set up at a show.
         </p>
         <div className="grid md:grid-cols-3 gap-8 mt-12">
           {features.map((feature, index) => (
