@@ -111,7 +111,7 @@ const Index = () => {
   const rarities = ["all", ...Array.from(new Set(mockCards.map(card => card.rarity)))];
 
   const renderHome = () => (
-    <div className="space-y-16">
+    <div className="space-y-0">
       <Hero onBrowseClick={() => setCurrentSection("inventory")} />
       <FeaturedCards cards={mockCards} />
       <AboutSection />
