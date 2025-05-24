@@ -24,14 +24,11 @@ export interface SheetBlogPost {
   content?: string;
 }
 
-// For GitHub Pages deployment, we'll use the Google Sheets CSV export
-// This avoids API keys and authentication issues
+// Updated with your actual Google Sheet ID
 const SHEETS_CONFIG = {
-  // Replace with your Google Sheet ID
-  SHEET_ID: 'YOUR_GOOGLE_SHEET_ID_HERE',
-  // Replace with your sheet names/gids
+  SHEET_ID: '1UkLgO9E3jSlhXFQGW2xX_HxA6bcoZZc4EjYbPP2bwqQ',
   CARDS_GID: '0', // First sheet (Cards inventory)
-  BLOG_GID: '123456789', // Second sheet (Blog posts)
+  BLOG_GID: '1579373089', // Second sheet (Blog posts)
 };
 
 // Convert Google Sheets to CSV URL
@@ -115,35 +112,3 @@ export const fetchBlogFromSheet = async (): Promise<SheetBlogPost[]> => {
     return [];
   }
 };
-
-// Setup instructions for Google Sheets integration
-export const SETUP_INSTRUCTIONS = `
-Setup Instructions for Google Sheets Integration:
-
-1. Create a Google Sheet with two tabs:
-   
-   Tab 1 - "Cards" (for inventory):
-   Headers: id, name, set, rarity, price, quantity, image, description, condition
-   
-   Tab 2 - "Blog" (for blog posts):
-   Headers: id, title, excerpt, date, slug, image, content
-
-2. Make your Google Sheet public:
-   - Click "Share" in the top-right corner
-   - Click "Change to anyone with the link can view"
-   - Copy the sheet ID from the URL (between /d/ and /edit)
-
-3. Get the GID for each tab:
-   - Click on the tab at the bottom
-   - Look at the URL for gid=XXXXXX
-   - Copy the number after gid=
-
-4. Update the SHEETS_CONFIG in googleSheets.ts:
-   - Replace YOUR_GOOGLE_SHEET_ID_HERE with your sheet ID
-   - Replace the GID values with your actual tab GIDs
-
-5. Your sheet URLs should look like:
-   https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv&gid=0
-
-Note: This method uses public Google Sheets without API keys, perfect for GitHub Pages!
-`;

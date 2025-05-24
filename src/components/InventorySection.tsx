@@ -1,29 +1,31 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
+import { fetchCardsFromSheet, SheetCard } from '@/utils/googleSheets';
 
-interface CollectibleCard {
-  id: string;
-  name: string;
-  set: string;
-  rarity: string;
-  price: string;
-  quantity: number;
-  image: string;
-  description: string;
-  condition: string;
-}
-
-interface InventorySectionProps {
-  cards: CollectibleCard[];
-}
-
-const InventorySection = ({ cards }: InventorySectionProps) => {
+const InventorySection = () => {
+  const [cards, setCards] = useState<SheetCard[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRarity, setSelectedRarity] = useState("all");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadCards = async () => {
+      setLoading(true);
+      try {
+        const fetchedCards = await fetchCardsFromSheet();
+        setCards(fetchedCards);
+      } catch (error) {
+        console.error('Failed to load cards:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadCards();
+  }, []);
 
   const filteredCards = cards.filter(card => {
     const matchesSearch = card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -33,6 +35,20 @@ const InventorySection = ({ cards }: InventorySectionProps) => {
   });
 
   const rarities = ["all", ...Array.from(new Set(cards.map(card => card.rarity)))];
+
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
+          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Card Inventory</h1>
+          <p className="text-xl text-gray-700">Loading our complete collection...</p>
+        </div>
+        <div className="flex justify-center items-center py-12">
+          <div className="text-xl text-gray-500">Loading inventory...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
@@ -65,6 +81,11 @@ const InventorySection = ({ cards }: InventorySectionProps) => {
         </select>
       </div>
 
+      {/* Results count */}
+      <div className="text-sm text-gray-600 bg-white/80 backdrop-blur-sm p-3 rounded-lg border border-green-200/50">
+        Showing {filteredCards.length} of {cards.length} cards
+      </div>
+
       {/* Cards Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredCards.map((card) => (
@@ -74,6 +95,9 @@ const InventorySection = ({ cards }: InventorySectionProps) => {
                 src={card.image} 
                 alt={card.name}
                 className="w-full h-48 object-cover rounded-t-lg"
+                onError={(e) => {
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400';
+                }}
               />
             </CardHeader>
             <CardContent className="p-6">
@@ -97,9 +121,10 @@ const InventorySection = ({ cards }: InventorySectionProps) => {
         ))}
       </div>
 
-      {filteredCards.length === 0 && (
+      {filteredCards.length === 0 && !loading && (
         <div className="text-center py-12 bg-white/90 backdrop-blur-sm rounded-2xl border border-green-200/50">
           <p className="text-xl text-gray-700">No cards found matching your criteria.</p>
+          <p className="text-gray-500 mt-2">Try adjusting your search or filter settings.</p>
         </div>
       )}
     </div>

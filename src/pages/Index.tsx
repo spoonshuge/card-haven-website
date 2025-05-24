@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
@@ -24,7 +23,7 @@ const Index = () => {
   const renderContent = () => {
     switch (currentSection) {
       case "inventory":
-        return <InventorySection cards={mockCards} />;
+        return <InventorySection />;
       case "blog":
         return <BlogSection posts={mockBlogPosts} />;
       case "connect":
