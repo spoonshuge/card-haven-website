@@ -19,8 +19,8 @@ const Hero = ({ onBrowseClick }: HeroProps) => {
       
       {/* Content floating above image */}
       <div className="relative container mx-auto px-6 z-10">
-        {/* Semi-transparent box around title and intro text */}
-        <div className="bg-white/30 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/30 shadow-2xl">
+        {/* Black box around title that shrinks to fit */}
+        <div className="inline-block bg-black/90 backdrop-blur-sm rounded-2xl p-8 mb-8 border-2 border-white shadow-2xl">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-2xl animate-fade-in break-words">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400">
               spoonLabs.cards
