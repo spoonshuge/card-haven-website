@@ -21,10 +21,10 @@ interface ContactLinksProps {
 }
 
 const ContactLinks = ({ 
-  email = "cards@example.com",
-  instagram = "elitecardcollectibles",
-  twitter = "elitecards",
-  github = "elitecards",
+  email = "daniel@spoonlabs.cards",
+  instagram = "spoonlabs",
+  twitter = "spoonshuge",
+  github = "spoonshuge",
   phone = "(555) 123-4567",
   address = "123 Collector's Lane, Card City, CC 12345"
 }: ContactLinksProps) => {
