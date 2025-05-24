@@ -27,13 +27,10 @@ const LoadingSkeleton = () => (
 );
 
 const BlogHeader = ({ isLoading }: { isLoading: boolean }) => (
-  <div className="text-center bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-green-200/50 shadow-lg">
-    <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-      spoonLabs Broll
+  <div className="text-center bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-green-200/50 shadow-lg w-fit mx-auto">
+    <h1 className="text-3xl font-bold bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent">
+      Blog
     </h1>
-    <p className="text-lg text-gray-700">
-      {isLoading ? "Loading latest posts..." : "Tips, news, and insights from the trading card world"}
-    </p>
   </div>
 );
 
