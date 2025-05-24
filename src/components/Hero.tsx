@@ -23,9 +23,9 @@ const Hero = ({ onBrowseClick }: HeroProps) => {
       {/* Content */}
       <div className="relative container mx-auto px-6 z-10">
         <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl animate-fade-in">
-          Elite Card{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400 animate-pulse">
-            Collectibles
+          spoonLabs{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400">
+            .cards
           </span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-3xl mx-auto drop-shadow-lg leading-relaxed">
@@ -35,7 +35,7 @@ const Hero = ({ onBrowseClick }: HeroProps) => {
         <Button 
           onClick={onBrowseClick}
           size="lg" 
-          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-12 py-6 text-xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-110 border-2 border-green-400/50 animate-pulse"
+          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-12 py-6 text-xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-110 border-2 border-green-400/50"
         >
           Browse Collection
         </Button>
