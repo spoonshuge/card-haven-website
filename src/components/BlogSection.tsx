@@ -26,7 +26,7 @@ const LoadingSkeleton = () => (
   </div>
 );
 
-const BlogHeader = () => (
+const BlogHeader = ({ isLoading }: { isLoading: boolean }) => (
   <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
     <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
       spoonLabs Broll
@@ -40,7 +40,7 @@ const BlogHeader = () => (
 const BlogSection = ({ posts, isLoading = false }: BlogSectionProps) => {
   return (
     <div className="space-y-8">
-      <BlogHeader />
+      <BlogHeader isLoading={isLoading} />
       
       {isLoading ? (
         <LoadingSkeleton />
