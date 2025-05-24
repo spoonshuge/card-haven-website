@@ -8,7 +8,7 @@ const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
   const navItems = [
     { id: "home", label: "Home" },
     { id: "inventory", label: "Goods" },
-    { id: "blog", label: "Broll" },
+    { id: "blog", label: "Blog" },
     { id: "connect", label: "Reach Out" }
   ];
 

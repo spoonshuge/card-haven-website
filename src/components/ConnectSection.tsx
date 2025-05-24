@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Mail, Instagram, Twitter, Github } from "lucide-react";
 
@@ -7,7 +6,6 @@ const ConnectSection = () => {
     <div className="space-y-6">
       <div className="text-center bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-green-200/50 shadow-lg max-w-md mx-auto">
         <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Connect With spoonLabs</h1>
-        <p className="text-lg text-gray-700">Get in touch to discuss your collecting needs</p>
       </div>
 
       <div className="max-w-2xl mx-auto">
