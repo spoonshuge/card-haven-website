@@ -1,0 +1,68 @@
+
+import { Search, Filter, ExternalLink } from "lucide-react";
+
+const AboutSection = () => {
+  const features = [
+    {
+      icon: Search,
+      title: "Authenticated Cards",
+      description: "Every card is verified for authenticity and condition",
+      color: "green"
+    },
+    {
+      icon: Filter,
+      title: "Rare Finds",
+      description: "Specializing in hard-to-find and vintage cards",
+      color: "blue"
+    },
+    {
+      icon: ExternalLink,
+      title: "Expert Service",
+      description: "Personalized assistance for collectors of all levels",
+      color: "orange"
+    }
+  ];
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-green-50 via-blue-50 to-orange-50 rounded-2xl relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 25% 25%, #10b981 2px, transparent 2px),
+                           radial-gradient(circle at 75% 75%, #3b82f6 2px, transparent 2px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
+      
+      <div className="container mx-auto px-6 text-center relative z-10">
+        <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+          About Elite Card Collectibles
+        </h2>
+        <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
+          With over 10 years of experience in the trading card industry, we specialize in authentic, 
+          high-quality collectibles. Every card in our inventory is carefully inspected and graded 
+          for condition to ensure you get exactly what you expect.
+        </p>
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
+          {features.map((feature, index) => (
+            <div key={index} className="text-center group">
+              <div className={`w-16 h-16 bg-gradient-to-br ${
+                feature.color === 'green' ? 'from-green-400 to-green-600' :
+                feature.color === 'blue' ? 'from-blue-400 to-blue-600' :
+                'from-orange-400 to-orange-600'
+              } rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110`}>
+                <feature.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900 group-hover:text-green-700 transition-colors">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default AboutSection;

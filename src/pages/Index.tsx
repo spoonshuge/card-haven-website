@@ -1,4 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Navigation from "@/components/Navigation";
+import Hero from "@/components/Hero";
+import FeaturedCards from "@/components/FeaturedCards";
+import AboutSection from "@/components/AboutSection";
+import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -107,95 +112,9 @@ const Index = () => {
 
   const renderHome = () => (
     <div className="space-y-16">
-      {/* Hero Section with Uploaded Image */}
-      <section className="relative text-center py-32 rounded-2xl overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/lovable-uploads/38c50f42-6889-4324-bfaa-2414a23b8d92.png')`
-          }}
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-50" />
-        <div className="relative container mx-auto px-6 z-10">
-          <h1 className="text-6xl font-bold text-white mb-6 drop-shadow-lg">
-            Elite Card <span className="text-green-400">Collectibles</span>
-          </h1>
-          <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto drop-shadow-md">
-            Discover rare and valuable trading cards from Pokemon, Magic: The Gathering, Yu-Gi-Oh!, and more. 
-            Curated collection with authenticated conditions.
-          </p>
-          <Button 
-            onClick={() => setCurrentSection("inventory")}
-            size="lg" 
-            className="bg-green-500 hover:bg-green-600 text-white px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Browse Collection
-          </Button>
-        </div>
-      </section>
-
-      {/* Featured Cards */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Featured Cards</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {mockCards.slice(0, 3).map((card) => (
-              <Card key={card.id} className="hover:shadow-xl transition-all duration-300 border-green-200 hover:border-green-400">
-                <CardHeader className="p-0">
-                  <img 
-                    src={card.image} 
-                    alt={card.name}
-                    className="w-full h-48 object-cover rounded-t-lg"
-                  />
-                </CardHeader>
-                <CardContent className="p-6">
-                  <CardTitle className="text-lg mb-2 text-gray-900">{card.name}</CardTitle>
-                  <CardDescription className="mb-4 text-gray-600">{card.description}</CardDescription>
-                  <div className="flex justify-between items-center">
-                    <span className="text-2xl font-bold text-green-600">{card.price}</span>
-                    <Badge variant="secondary" className="bg-orange-100 text-orange-800">{card.rarity}</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-8 text-gray-900">About Elite Card Collectibles</h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
-            With over 10 years of experience in the trading card industry, we specialize in authentic, 
-            high-quality collectibles. Every card in our inventory is carefully inspected and graded 
-            for condition to ensure you get exactly what you expect.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <Search className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Authenticated Cards</h3>
-              <p className="text-gray-600">Every card is verified for authenticity and condition</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <Filter className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Rare Finds</h3>
-              <p className="text-gray-600">Specializing in hard-to-find and vintage cards</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <ExternalLink className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Expert Service</h3>
-              <p className="text-gray-600">Personalized assistance for collectors of all levels</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero onBrowseClick={() => setCurrentSection("inventory")} />
+      <FeaturedCards cards={mockCards} />
+      <AboutSection />
     </div>
   );
 
@@ -395,111 +314,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm border-b border-green-200 sticky top-0 z-50">
-        <div className="container mx-auto px-6">
-          <div className="flex justify-between items-center h-16">
-            <button
-              onClick={() => setCurrentSection("home")}
-              className="text-2xl font-bold text-green-600 hover:text-green-700 transition-colors"
-            >
-              Elite Cards
-            </button>
-            <div className="hidden md:flex space-x-8">
-              <button
-                onClick={() => setCurrentSection("home")}
-                className={`text-gray-700 hover:text-green-600 transition-colors ${
-                  currentSection === "home" ? "text-green-600 font-semibold" : ""
-                }`}
-              >
-                Home
-              </button>
-              <button
-                onClick={() => setCurrentSection("inventory")}
-                className={`text-gray-700 hover:text-green-600 transition-colors ${
-                  currentSection === "inventory" ? "text-green-600 font-semibold" : ""
-                }`}
-              >
-                Inventory
-              </button>
-              <button
-                onClick={() => setCurrentSection("blog")}
-                className={`text-gray-700 hover:text-green-600 transition-colors ${
-                  currentSection === "blog" ? "text-green-600 font-semibold" : ""
-                }`}
-              >
-                Blog
-              </button>
-              <button
-                onClick={() => setCurrentSection("connect")}
-                className={`text-gray-700 hover:text-green-600 transition-colors ${
-                  currentSection === "connect" ? "text-green-600 font-semibold" : ""
-                }`}
-              >
-                Connect
-              </button>
-            </div>
-            
-            {/* Mobile menu */}
-            <div className="md:hidden">
-              <select
-                value={currentSection}
-                onChange={(e) => setCurrentSection(e.target.value)}
-                className="px-3 py-1 border border-green-300 rounded-md focus:ring-2 focus:ring-green-500"
-              >
-                <option value="home">Home</option>
-                <option value="inventory">Inventory</option>
-                <option value="blog">Blog</option>
-                <option value="connect">Connect</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content */}
+      <Navigation currentSection={currentSection} onSectionChange={setCurrentSection} />
       <main className="container mx-auto px-6 py-8">
         {renderContent()}
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 mt-16">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4 text-green-400">Elite Card Collectibles</h3>
-              <p className="text-gray-400">
-                Your trusted source for authentic trading cards and collectibles.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><button onClick={() => setCurrentSection("inventory")} className="hover:text-green-400 transition-colors">Browse Inventory</button></li>
-                <li><button onClick={() => setCurrentSection("blog")} className="hover:text-green-400 transition-colors">Read Blog</button></li>
-                <li><button onClick={() => setCurrentSection("connect")} className="hover:text-green-400 transition-colors">Contact Us</button></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-green-400 transition-colors">
-                  <Instagram className="w-6 h-6" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-green-400 transition-colors">
-                  <Twitter className="w-6 h-6" />
-                </a>
-                <a href="#" className="text-gray-400 hover:text-green-400 transition-colors">
-                  <Mail className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Elite Card Collectibles. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer onSectionChange={setCurrentSection} />
     </div>
   );
 };
