@@ -7,7 +7,7 @@ interface HeroProps {
 
 const Hero = ({ onBrowseClick }: HeroProps) => {
   return (
-    <section className="relative text-center py-32 min-h-[600px] flex items-center justify-center">
+    <section className="relative text-center py-32 min-h-screen flex items-center justify-center">
       {/* Animated Particles Effect */}
       <div className="absolute inset-0 opacity-40">
         <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -22,11 +22,23 @@ const Hero = ({ onBrowseClick }: HeroProps) => {
         {/* Semi-transparent box around title and intro text */}
         <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/30 shadow-2xl">
           <h1 className="text-6xl md:text-7xl font-bold mb-6 drop-shadow-2xl animate-fade-in">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400">
+            <span 
+              className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400"
+              style={{
+                WebkitTextStroke: '2px black',
+                textStroke: '2px black'
+              }}
+            >
               spoonLabs.cards
             </span>
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto drop-shadow-lg leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400">
+          <p 
+            className="text-xl md:text-2xl max-w-3xl mx-auto drop-shadow-lg leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-400 to-orange-400"
+            style={{
+              WebkitTextStroke: '1px black',
+              textStroke: '1px black'
+            }}
+          >
             Discover rare and valuable trading cards from Pokemon, Magic: The Gathering, Yu-Gi-Oh!, and more. 
             Curated collection with authenticated conditions.
           </p>
