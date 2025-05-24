@@ -249,7 +249,7 @@ const Index = () => {
             </a>
 
             <a
-              href="https://instagram.com/elitecardcollectibles"
+              href="https://instagram.com/spoonlabscollectibles"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center p-4 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/80"
@@ -257,12 +257,12 @@ const Index = () => {
               <Instagram className="w-8 h-8 text-pink-600 mr-4" />
               <div>
                 <h3 className="font-semibold">Instagram</h3>
-                <p className="text-gray-600">@elitecardcollectibles</p>
+                <p className="text-gray-600">@spoonlabscollectibles</p>
               </div>
             </a>
 
             <a
-              href="https://twitter.com/elitecards"
+              href="https://twitter.com/spoonlabs"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center p-4 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/80"
@@ -270,12 +270,12 @@ const Index = () => {
               <Twitter className="w-8 h-8 text-blue-400 mr-4" />
               <div>
                 <h3 className="font-semibold">Twitter</h3>
-                <p className="text-gray-600">@elitecards</p>
+                <p className="text-gray-600">@spoonlabs</p>
               </div>
             </a>
 
             <a
-              href="https://github.com/elitecards"
+              href="https://github.com/spoonlabs"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center p-4 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/80"
@@ -283,7 +283,7 @@ const Index = () => {
               <Github className="w-8 h-8 text-gray-700 mr-4" />
               <div>
                 <h3 className="font-semibold">GitHub</h3>
-                <p className="text-gray-600">@elitecards</p>
+                <p className="text-gray-600">@spoonlabs</p>
               </div>
             </a>
           </div>

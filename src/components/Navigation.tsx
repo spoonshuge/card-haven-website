@@ -13,14 +13,14 @@ const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
   ];
 
   return (
-    <nav className="bg-white/95 backdrop-blur-sm shadow-sm border-b border-green-200 sticky top-0 z-50">
+    <nav className="bg-gray-900/95 backdrop-blur-sm shadow-sm border-b border-gray-700 sticky top-0 z-50">
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center h-16">
           <button
             onClick={() => onSectionChange("home")}
-            className="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent hover:from-green-700 hover:to-blue-700 transition-all duration-300"
+            className="text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent hover:from-green-300 hover:to-blue-300 transition-all duration-300"
           >
-            Elite Cards
+            spoonLabs
           </button>
           
           {/* Desktop Navigation */}
@@ -29,8 +29,8 @@ const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
               <button
                 key={item.id}
                 onClick={() => onSectionChange(item.id)}
-                className={`text-gray-700 hover:text-green-600 transition-all duration-300 relative ${
-                  currentSection === item.id ? "text-green-600 font-semibold" : ""
+                className={`text-gray-300 hover:text-green-400 transition-all duration-300 relative ${
+                  currentSection === item.id ? "text-green-400 font-semibold" : ""
                 }`}
               >
                 {item.label}
@@ -46,7 +46,7 @@ const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
             <select
               value={currentSection}
               onChange={(e) => onSectionChange(e.target.value)}
-              className="px-3 py-1 border border-green-300 rounded-md focus:ring-2 focus:ring-green-500 bg-white/90"
+              className="px-3 py-1 border border-gray-600 rounded-md focus:ring-2 focus:ring-green-500 bg-gray-800 text-gray-300"
             >
               {navItems.map((item) => (
                 <option key={item.id} value={item.id}>{item.label}</option>
