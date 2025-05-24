@@ -51,6 +51,19 @@ const Index = () => {
     }
   };
 
+  // For connect section, we want a different layout structure
+  if (currentSection === "connect") {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navigation currentSection={currentSection} onSectionChange={setCurrentSection} />
+        <main className="flex-1 container mx-auto px-6 py-8">
+          <ConnectSection />
+        </main>
+        <Footer onSectionChange={setCurrentSection} />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen">
       <Navigation currentSection={currentSection} onSectionChange={setCurrentSection} />
