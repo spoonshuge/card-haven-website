@@ -32,14 +32,6 @@ const Index = () => {
     loadBlogPosts();
   }, []);
 
-  const renderHome = () => (
-    <div className="space-y-32">
-      <Hero onBrowseClick={() => setCurrentSection("inventory")} />
-      <FeaturedCards cards={mockCards} />
-      <AboutSection />
-    </div>
-  );
-
   const renderContent = () => {
     switch (currentSection) {
       case "inventory":
@@ -49,7 +41,13 @@ const Index = () => {
       case "connect":
         return <ConnectSection />;
       default:
-        return renderHome();
+        return (
+          <div className="space-y-32">
+            <Hero onBrowseClick={() => setCurrentSection("inventory")} />
+            <FeaturedCards cards={mockCards} />
+            <AboutSection />
+          </div>
+        );
     }
   };
 

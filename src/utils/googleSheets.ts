@@ -1,3 +1,4 @@
+
 // Google Sheets API integration for GitHub Pages
 // This utility handles fetching data from Google Sheets for static deployment
 
@@ -23,48 +24,42 @@ export interface SheetBlogPost {
   content?: string;
 }
 
-// Updated with your actual Google Sheet ID
 const SHEETS_CONFIG = {
   SHEET_ID: '1UkLgO9E3jSlhXFQGW2xX_HxA6bcoZZc4EjYbPP2bwqQ',
-  CARDS_GID: '0', // First sheet (Cards inventory)
-  BLOG_GID: '596757522', // Blog sheet GID
-};
+  CARDS_GID: '0',
+  BLOG_GID: '596757522',
+} as const;
 
-// Convert Google Sheets to CSV URL
-const getSheetCSVUrl = (sheetId: string, gid: string) => {
+const getSheetCSVUrl = (sheetId: string, gid: string): string => {
   return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
 };
 
-// Parse CSV data to JSON
-const parseCSV = (csvText: string): any[] => {
-  const lines = csvText.split('\n');
+const parseCSV = (csvText: string): Record<string, string>[] => {
+  const lines = csvText.split('\n').filter(line => line.trim());
+  if (lines.length === 0) return [];
+  
   const headers = lines[0].split(',').map(header => header.trim().replace(/"/g, ''));
   
-  return lines.slice(1)
-    .filter(line => line.trim())
-    .map(line => {
-      const values = line.split(',').map(value => value.trim().replace(/"/g, ''));
-      const obj: any = {};
-      headers.forEach((header, index) => {
-        obj[header] = values[index] || '';
-      });
-      return obj;
+  return lines.slice(1).map(line => {
+    const values = line.split(',').map(value => value.trim().replace(/"/g, ''));
+    const obj: Record<string, string> = {};
+    headers.forEach((header, index) => {
+      obj[header] = values[index] || '';
     });
+    return obj;
+  });
 };
 
-// Fetch cards from Google Sheets
 export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
   try {
     const url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, SHEETS_CONFIG.CARDS_GID);
-    console.log('Fetching cards from URL:', url);
     const response = await fetch(url);
     
     if (!response.ok) {
-      throw new Error(`Failed to fetch cards data: ${response.status}`);
+      throw new Error(`HTTP ${response.status}: Failed to fetch cards data`);
     }
     
     const csvText = await response.text();
-    console.log('Cards CSV response:', csvText.substring(0, 200));
     const rawData = parseCSV(csvText);
     
     return rawData.map((row, index) => ({
@@ -80,28 +75,23 @@ export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
     }));
   } catch (error) {
     console.error('Error fetching cards from Google Sheets:', error);
-    // Return fallback data in case of error
     return [];
   }
 };
 
-// Fetch blog posts from Google Sheets
 export const fetchBlogFromSheet = async (): Promise<SheetBlogPost[]> => {
   try {
     const url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, SHEETS_CONFIG.BLOG_GID);
-    console.log('Fetching blog from URL:', url);
     const response = await fetch(url);
     
     if (!response.ok) {
-      throw new Error(`Failed to fetch blog data: ${response.status}`);
+      throw new Error(`HTTP ${response.status}: Failed to fetch blog data`);
     }
     
     const csvText = await response.text();
-    console.log('Blog CSV response:', csvText.substring(0, 200));
     const rawData = parseCSV(csvText);
     
-    // Filter for blog-like data (look for posts with titles)
-    const blogData = rawData.filter(row => row.title && row.title.trim() !== '');
+    const blogData = rawData.filter(row => row.title?.trim());
     
     return blogData.map((row, index) => ({
       id: row.id || `post-${index}`,
@@ -114,7 +104,6 @@ export const fetchBlogFromSheet = async (): Promise<SheetBlogPost[]> => {
     }));
   } catch (error) {
     console.error('Error fetching blog posts from Google Sheets:', error);
-    // Return fallback data in case of error
     return [{
       id: 'fallback-1',
       title: 'Welcome to spoonLabs Broll',
