@@ -4,7 +4,7 @@ import { Mail, Instagram, Twitter, Github } from "lucide-react";
 
 const ConnectSection = () => {
   return (
-    <div className="space-y-6">
+    <div className="min-h-[calc(100vh-200px)] flex flex-col justify-center space-y-6">
       <div className="max-w-2xl mx-auto">
         <Card className="p-6 border-green-200/50 bg-white/80 backdrop-blur-sm shadow-lg">
           <div className="grid md:grid-cols-2 gap-4 mb-6">

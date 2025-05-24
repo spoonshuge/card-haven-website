@@ -38,11 +38,13 @@ const Navigation = ({ currentSection, onSectionChange }: NavigationProps) => {
           {/* Page Title - Centered with hero image */}
           {pageTitle && (
             <div className="absolute left-1/2 transform -translate-x-1/2">
-              <h1 className="text-3xl font-black bg-gradient-to-r from-red-500 via-pink-500 via-yellow-400 via-green-400 via-blue-500 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-pulse drop-shadow-lg filter brightness-110 saturate-150" 
+              <h1 className="text-4xl font-black bg-gradient-to-r from-red-500 via-pink-500 via-yellow-400 via-green-400 via-blue-500 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-2xl transform hover:scale-105 transition-transform duration-300" 
                   style={{
-                    textShadow: '0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(255,0,255,0.2), 0 0 30px rgba(0,255,255,0.2)',
+                    textShadow: '0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(255,0,255,0.3), 0 0 60px rgba(0,255,255,0.2), 0 0 80px rgba(255,255,0,0.1)',
                     fontFamily: 'Impact, Arial Black, sans-serif',
-                    letterSpacing: '2px'
+                    letterSpacing: '3px',
+                    WebkitTextStroke: '1px rgba(255,255,255,0.2)',
+                    filter: 'brightness(120%) saturate(150%) contrast(110%)'
                   }}>
                 {pageTitle}
               </h1>
