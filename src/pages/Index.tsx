@@ -120,26 +120,26 @@ const Index = () => {
 
   const renderInventory = () => (
     <div className="space-y-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Card Inventory</h1>
-        <p className="text-xl text-gray-600">Browse our complete collection of trading cards</p>
+      <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
+        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Card Inventory</h1>
+        <p className="text-xl text-gray-700">Browse our complete collection of trading cards</p>
       </div>
 
       {/* Search and Filter */}
-      <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-green-200/50 shadow-lg">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
           <Input
             placeholder="Search cards..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 border-green-200 focus:border-green-400"
+            className="pl-10 border-green-200 focus:border-green-400 bg-white/80"
           />
         </div>
         <select
           value={selectedRarity}
           onChange={(e) => setSelectedRarity(e.target.value)}
-          className="px-4 py-2 border border-green-200 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
+          className="px-4 py-2 border border-green-200 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white/80"
         >
           {rarities.map(rarity => (
             <option key={rarity} value={rarity}>
@@ -152,7 +152,7 @@ const Index = () => {
       {/* Cards Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredCards.map((card) => (
-          <Card key={card.id} className="hover:shadow-xl transition-all duration-300 border-green-200 hover:border-green-400">
+          <Card key={card.id} className="hover:shadow-2xl transition-all duration-300 border-green-200/50 hover:border-green-400 bg-white/95 backdrop-blur-sm transform hover:-translate-y-2">
             <CardHeader className="p-0">
               <img 
                 src={card.image} 
@@ -182,8 +182,8 @@ const Index = () => {
       </div>
 
       {filteredCards.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-xl text-gray-500">No cards found matching your criteria.</p>
+        <div className="text-center py-12 bg-white/90 backdrop-blur-sm rounded-2xl border border-green-200/50">
+          <p className="text-xl text-gray-700">No cards found matching your criteria.</p>
         </div>
       )}
     </div>
@@ -191,14 +191,14 @@ const Index = () => {
 
   const renderBlog = () => (
     <div className="space-y-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Collecting Blog</h1>
-        <p className="text-xl text-gray-600">Tips, news, and insights from the trading card world</p>
+      <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
+        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Collecting Blog</h1>
+        <p className="text-xl text-gray-700">Tips, news, and insights from the trading card world</p>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {mockBlogPosts.map((post) => (
-          <Card key={post.id} className="hover:shadow-xl transition-all duration-300 border-green-200 hover:border-green-400">
+          <Card key={post.id} className="hover:shadow-2xl transition-all duration-300 border-green-200/50 hover:border-green-400 bg-white/95 backdrop-blur-sm transform hover:-translate-y-2">
             <CardHeader className="p-0">
               <img 
                 src={post.image} 
@@ -222,16 +222,16 @@ const Index = () => {
 
   const renderConnect = () => (
     <div className="space-y-8">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Connect With Me</h1>
-        <p className="text-xl text-gray-600">Get in touch to discuss your collecting needs</p>
+      <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
+        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Connect With Me</h1>
+        <p className="text-xl text-gray-700">Get in touch to discuss your collecting needs</p>
       </div>
 
       <div className="max-w-2xl mx-auto">
-        <Card className="p-8 border-green-200">
+        <Card className="p-8 border-green-200/50 bg-white/95 backdrop-blur-sm shadow-xl">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Ready to add to your collection?</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="text-2xl font-semibold mb-4 text-gray-900">Ready to add to your collection?</h2>
+            <p className="text-gray-700 mb-6">
               Contact me directly to inquire about specific cards, discuss pricing, or learn more about upcoming inventory.
             </p>
           </div>
@@ -239,7 +239,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-6">
             <a
               href="mailto:cards@example.com"
-              className="flex items-center p-4 border border-green-200 rounded-lg hover:bg-green-50 transition-colors"
+              className="flex items-center p-4 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/80"
             >
               <Mail className="w-8 h-8 text-green-600 mr-4" />
               <div>
@@ -252,7 +252,7 @@ const Index = () => {
               href="https://instagram.com/elitecardcollectibles"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center p-4 border border-green-200 rounded-lg hover:bg-green-50 transition-colors"
+              className="flex items-center p-4 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/80"
             >
               <Instagram className="w-8 h-8 text-pink-600 mr-4" />
               <div>
@@ -265,7 +265,7 @@ const Index = () => {
               href="https://twitter.com/elitecards"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center p-4 border border-green-200 rounded-lg hover:bg-green-50 transition-colors"
+              className="flex items-center p-4 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/80"
             >
               <Twitter className="w-8 h-8 text-blue-400 mr-4" />
               <div>
@@ -278,7 +278,7 @@ const Index = () => {
               href="https://github.com/elitecards"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center p-4 border border-green-200 rounded-lg hover:bg-green-50 transition-colors"
+              className="flex items-center p-4 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/80"
             >
               <Github className="w-8 h-8 text-gray-700 mr-4" />
               <div>
@@ -288,7 +288,7 @@ const Index = () => {
             </a>
           </div>
 
-          <div className="mt-8 p-6 bg-green-50 rounded-lg border border-green-200">
+          <div className="mt-8 p-6 bg-green-50/90 rounded-lg border border-green-200/50">
             <h3 className="font-semibold text-green-900 mb-2">Business Hours</h3>
             <p className="text-green-800">Monday - Friday: 9am - 6pm EST</p>
             <p className="text-green-800">Saturday: 10am - 4pm EST</p>
@@ -313,7 +313,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <Navigation currentSection={currentSection} onSectionChange={setCurrentSection} />
       <main className="container mx-auto px-6 py-8">
         {renderContent()}

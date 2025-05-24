@@ -8,22 +8,16 @@ interface HeroProps {
 const Hero = ({ onBrowseClick }: HeroProps) => {
   return (
     <section className="relative text-center py-32 rounded-2xl overflow-hidden min-h-[600px] flex items-center justify-center">
-      {/* Full Hero Image as Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 hover:scale-105"
-        style={{
-          backgroundImage: `url('/lovable-uploads/38c50f42-6889-4324-bfaa-2414a23b8d92.png')`
-        }}
-      />
-      
-      {/* Gradient Overlay for Better Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+      {/* Enhanced overlay for better contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
       
       {/* Animated Particles Effect */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-blue-400 rounded-full animate-bounce delay-1000"></div>
-        <div className="absolute top-1/2 right-1/4 w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse delay-500"></div>
+      <div className="absolute inset-0 opacity-40">
+        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/3 w-2 h-2 bg-blue-400 rounded-full animate-bounce delay-1000"></div>
+        <div className="absolute top-1/2 right-1/4 w-2.5 h-2.5 bg-orange-400 rounded-full animate-pulse delay-500"></div>
+        <div className="absolute top-1/3 left-1/2 w-1.5 h-1.5 bg-green-300 rounded-full animate-bounce delay-700"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-blue-300 rounded-full animate-pulse delay-300"></div>
       </div>
       
       {/* Content */}
@@ -41,7 +35,7 @@ const Hero = ({ onBrowseClick }: HeroProps) => {
         <Button 
           onClick={onBrowseClick}
           size="lg" 
-          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-10 py-4 text-lg shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 border-2 border-green-400/50"
+          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-12 py-6 text-xl shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-110 border-2 border-green-400/50 animate-pulse"
         >
           Browse Collection
         </Button>
