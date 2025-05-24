@@ -28,7 +28,7 @@ export interface SheetBlogPost {
 const SHEETS_CONFIG = {
   SHEET_ID: '1UkLgO9E3jSlhXFQGW2xX_HxA6bcoZZc4EjYbPP2bwqQ',
   CARDS_GID: '0', // First sheet (Cards inventory)
-  BLOG_GID: '1579373089', // Second sheet (Blog posts)
+  BLOG_GID: '0', // Try using the first sheet GID initially to test
 };
 
 // Convert Google Sheets to CSV URL
@@ -57,13 +57,15 @@ const parseCSV = (csvText: string): any[] => {
 export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
   try {
     const url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, SHEETS_CONFIG.CARDS_GID);
+    console.log('Fetching cards from URL:', url);
     const response = await fetch(url);
     
     if (!response.ok) {
-      throw new Error('Failed to fetch cards data');
+      throw new Error(`Failed to fetch cards data: ${response.status}`);
     }
     
     const csvText = await response.text();
+    console.log('Cards CSV response:', csvText.substring(0, 200));
     const rawData = parseCSV(csvText);
     
     return rawData.map((row, index) => ({
@@ -87,17 +89,31 @@ export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
 // Fetch blog posts from Google Sheets
 export const fetchBlogFromSheet = async (): Promise<SheetBlogPost[]> => {
   try {
-    const url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, SHEETS_CONFIG.BLOG_GID);
-    const response = await fetch(url);
+    // First, try the original GID
+    let url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, '1579373089');
+    console.log('Fetching blog from URL:', url);
+    let response = await fetch(url);
     
     if (!response.ok) {
-      throw new Error('Failed to fetch blog data');
+      console.log('First attempt failed, trying GID 0');
+      // If that fails, try GID 0 (first sheet)
+      url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, '0');
+      console.log('Trying URL:', url);
+      response = await fetch(url);
+    }
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch blog data: ${response.status}`);
     }
     
     const csvText = await response.text();
+    console.log('Blog CSV response:', csvText.substring(0, 200));
     const rawData = parseCSV(csvText);
     
-    return rawData.map((row, index) => ({
+    // Filter for blog-like data (look for posts with titles)
+    const blogData = rawData.filter(row => row.title && row.title.trim() !== '');
+    
+    return blogData.map((row, index) => ({
       id: row.id || `post-${index}`,
       title: row.title || '',
       excerpt: row.excerpt || '',
@@ -109,6 +125,14 @@ export const fetchBlogFromSheet = async (): Promise<SheetBlogPost[]> => {
   } catch (error) {
     console.error('Error fetching blog posts from Google Sheets:', error);
     // Return fallback data in case of error
-    return [];
+    return [{
+      id: 'fallback-1',
+      title: 'Welcome to spoonLabs Broll',
+      excerpt: 'Check back soon for updates from the trading card world.',
+      date: '2024-01-01',
+      slug: 'welcome',
+      image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600',
+      content: 'Blog posts will appear here once the Google Sheets connection is properly configured.'
+    }];
   }
 };
