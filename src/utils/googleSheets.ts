@@ -1,4 +1,3 @@
-
 // Google Sheets API integration for GitHub Pages
 // This utility handles fetching data from Google Sheets for static deployment
 
@@ -28,7 +27,7 @@ export interface SheetBlogPost {
 const SHEETS_CONFIG = {
   SHEET_ID: '1UkLgO9E3jSlhXFQGW2xX_HxA6bcoZZc4EjYbPP2bwqQ',
   CARDS_GID: '0', // First sheet (Cards inventory)
-  BLOG_GID: '0', // Try using the first sheet GID initially to test
+  BLOG_GID: '596757522', // Blog sheet GID
 };
 
 // Convert Google Sheets to CSV URL
@@ -89,18 +88,9 @@ export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
 // Fetch blog posts from Google Sheets
 export const fetchBlogFromSheet = async (): Promise<SheetBlogPost[]> => {
   try {
-    // First, try the original GID
-    let url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, '1579373089');
+    const url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, SHEETS_CONFIG.BLOG_GID);
     console.log('Fetching blog from URL:', url);
-    let response = await fetch(url);
-    
-    if (!response.ok) {
-      console.log('First attempt failed, trying GID 0');
-      // If that fails, try GID 0 (first sheet)
-      url = getSheetCSVUrl(SHEETS_CONFIG.SHEET_ID, '0');
-      console.log('Trying URL:', url);
-      response = await fetch(url);
-    }
+    const response = await fetch(url);
     
     if (!response.ok) {
       throw new Error(`Failed to fetch blog data: ${response.status}`);
