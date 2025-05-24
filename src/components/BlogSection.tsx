@@ -19,7 +19,7 @@ const BlogSection = ({ posts }: BlogSectionProps) => {
   return (
     <div className="space-y-8">
       <div className="text-center bg-white/95 backdrop-blur-sm p-8 rounded-2xl border border-green-200/50 shadow-xl">
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Collecting Blog</h1>
+        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">spoonLabs Broll</h1>
         <p className="text-xl text-gray-700">Tips, news, and insights from the trading card world</p>
       </div>
 
