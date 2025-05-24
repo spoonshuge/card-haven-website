@@ -22,7 +22,7 @@ const App = () => {
             className="fixed inset-0 bg-center bg-no-repeat z-0"
             style={{
               backgroundImage: `
-                radial-gradient(circle at center, transparent 40%, rgba(34, 197, 94, 0.3) 70%, rgba(34, 197, 94, 0.6) 100%),
+                radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.3) 70%, rgba(0, 0, 0, 0.6) 100%),
                 url('${basename}/lovable-uploads/38c50f42-6889-4324-bfaa-2414a23b8d92.png')
               `,
               backgroundSize: 'contain',
@@ -30,8 +30,8 @@ const App = () => {
             }}
           />
           
-          {/* Green gradient fill for areas not covered by the image */}
-          <div className="fixed inset-0 bg-gradient-to-br from-green-500/20 via-transparent to-green-600/20 z-0" />
+          {/* Black to silver gradient fill for areas not covered by the image */}
+          <div className="fixed inset-0 bg-gradient-to-b from-black/20 via-gray-600/10 to-gray-300/20 z-0" />
           
           {/* Global overlay for better content readability */}
           <div className="relative min-h-screen bg-black/20 backdrop-blur-[1px] z-10">
