@@ -31,6 +31,8 @@ const SHEETS_CONFIG = {
   BLOG_GID: '596757522',
 } as const;
 
+const DEFAULT_PLACEHOLDER = '/lovable-uploads/8ccf9512-2012-4e5d-851a-7bdcb5f6ebc4.png';
+
 const getSheetCSVUrl = (sheetId: string, gid: string): string => {
   return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
 };
@@ -66,8 +68,8 @@ export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
     return rawData.map((row, index) => ({
       id: row.id || `card-${index}`,
       title: row.Title || row.title || '',
-      frontImage: row['Front Image'] || row.frontImage || 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400',
-      backImage: row['Back Image'] || row.backImage || 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400',
+      frontImage: row['Front Image'] || row.frontImage || DEFAULT_PLACEHOLDER,
+      backImage: row['Back Image'] || row.backImage || DEFAULT_PLACEHOLDER,
       price: row.Price || row.price || '$0.00',
       set: row.set || row.Set || '',
       rarity: row.rarity || row.Rarity || '',
@@ -101,7 +103,7 @@ export const fetchBlogFromSheet = async (): Promise<SheetBlogPost[]> => {
       excerpt: row.excerpt || '',
       date: row.date || new Date().toISOString().split('T')[0],
       slug: row.slug || `post-${index}`,
-      image: row.image || 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600',
+      image: row.image || DEFAULT_PLACEHOLDER,
       content: row.content || ''
     }));
   } catch (error) {
@@ -112,7 +114,7 @@ export const fetchBlogFromSheet = async (): Promise<SheetBlogPost[]> => {
       excerpt: 'Check back soon for updates from the trading card world.',
       date: '2024-01-01',
       slug: 'welcome',
-      image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600',
+      image: DEFAULT_PLACEHOLDER,
       content: 'Blog posts will appear here once the Google Sheets connection is properly configured.'
     }];
   }

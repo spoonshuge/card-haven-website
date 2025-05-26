@@ -27,7 +27,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
               alt={card.title}
               className="w-full h-full object-cover rounded-lg transition-opacity duration-300"
               onError={(e) => {
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400';
+                e.currentTarget.src = '/lovable-uploads/8ccf9512-2012-4e5d-851a-7bdcb5f6ebc4.png';
               }}
             />
           </div>
@@ -43,7 +43,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
                 alt={`${card.title} - Front`}
                 className="w-full h-auto object-contain rounded-lg"
                 onError={(e) => {
-                  e.currentTarget.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600';
+                  e.currentTarget.src = '/lovable-uploads/8ccf9512-2012-4e5d-851a-7bdcb5f6ebc4.png';
                 }}
               />
             </div>
@@ -54,7 +54,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
                 alt={`${card.title} - Back`}
                 className="w-full h-auto object-contain rounded-lg"
                 onError={(e) => {
-                  e.currentTarget.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600';
+                  e.currentTarget.src = '/lovable-uploads/8ccf9512-2012-4e5d-851a-7bdcb5f6ebc4.png';
                 }}
               />
             </div>

@@ -34,7 +34,7 @@ const CardInventory = ({ cards: propCards }: CardInventoryProps) => {
   }, [propCards]);
 
   const filteredCards = cards.filter(card => {
-    const matchesSearch = card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    const matchesSearch = card.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          card.set.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesRarity = selectedRarity === "all" || card.rarity === selectedRarity;
     return matchesSearch && matchesRarity;
@@ -87,18 +87,17 @@ const CardInventory = ({ cards: propCards }: CardInventoryProps) => {
           <Card key={card.id} className="hover:shadow-lg transition-shadow duration-300">
             <CardHeader className="p-0">
               <img 
-                src={card.image} 
-                alt={card.name}
+                src={card.frontImage} 
+                alt={card.title}
                 className="w-full h-48 object-cover rounded-t-lg"
                 onError={(e) => {
-                  // Fallback image if card image fails to load
-                  e.currentTarget.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400';
+                  e.currentTarget.src = '/lovable-uploads/8ccf9512-2012-4e5d-851a-7bdcb5f6ebc4.png';
                 }}
               />
             </CardHeader>
             <CardContent className="p-6">
               <div className="flex justify-between items-start mb-2">
-                <CardTitle className="text-lg">{card.name}</CardTitle>
+                <CardTitle className="text-lg">{card.title}</CardTitle>
                 <Badge variant="secondary">{card.rarity}</Badge>
               </div>
               <p className="text-sm text-gray-600 mb-2">{card.set}</p>
