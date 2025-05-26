@@ -33,8 +33,8 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
           </div>
         </DialogTrigger>
         
-        {/* Full Size Modal */}
-        <DialogContent className="max-w-4xl p-6">
+        {/* Full Size Modal with mobile-friendly positioning */}
+        <DialogContent className="max-w-4xl p-6 mt-8 md:mt-0 max-h-[90vh] overflow-y-auto">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-lg font-semibold mb-2">Front</h3>
