@@ -7,7 +7,7 @@ interface HeroProps {
 
 const Hero = ({ onBrowseClick }: HeroProps) => {
   return (
-    <section className="relative text-center py-32 min-h-screen flex items-center justify-center">
+    <section className="relative text-center py-8 md:py-32 min-h-[calc(100vh-64px)] md:min-h-screen flex items-center justify-center -mt-8 md:mt-0">
       {/* Animated Particles Effect */}
       <div className="absolute inset-0 opacity-40">
         <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
