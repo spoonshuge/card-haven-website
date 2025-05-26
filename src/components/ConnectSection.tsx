@@ -1,6 +1,6 @@
 
 import { Card } from "@/components/ui/card";
-import { Mail, Instagram, Twitter, Github } from "lucide-react";
+import { Mail, Instagram } from "lucide-react";
 
 const ConnectSection = () => {
   return (
@@ -20,22 +20,6 @@ const ConnectSection = () => {
               <Instagram className="w-6 h-6 text-pink-600 mr-3" />
               <div>
                 <h3 className="font-semibold text-sm">Instagram</h3>
-                <p className="text-gray-600 text-sm">@spoonlabs</p>
-              </div>
-            </a>
-
-            <a href="https://twitter.com/spoonlabs" target="_blank" rel="noopener noreferrer" className="flex items-center p-3 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/70">
-              <Twitter className="w-6 h-6 text-blue-400 mr-3" />
-              <div>
-                <h3 className="font-semibold text-sm">X</h3>
-                <p className="text-gray-600 text-sm">@spoonshuge</p>
-              </div>
-            </a>
-
-            <a href="https://github.com/spoonlabs" target="_blank" rel="noopener noreferrer" className="flex items-center p-3 border border-green-200/50 rounded-lg hover:bg-green-50/80 transition-colors bg-white/70">
-              <Github className="w-6 h-6 text-gray-700 mr-3" />
-              <div>
-                <h3 className="font-semibold text-sm">GitHub</h3>
                 <p className="text-gray-600 text-sm">@spoonlabs</p>
               </div>
             </a>
