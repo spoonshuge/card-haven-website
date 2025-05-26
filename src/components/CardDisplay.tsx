@@ -67,7 +67,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
           </div>
           <div className="mt-4 text-center">
             <h2 className="text-2xl font-bold text-gray-900">{card.title}</h2>
-            <div className="flex items-center justify-center gap-2 text-xl font-bold text-green-600 mt-2">
+            <div className="flex items-center justify-center gap-4 text-xl font-bold text-green-600 mt-2">
               {card.price}
               <button
                 onClick={handleInstagramClick}
@@ -84,7 +84,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
       {/* Card Info */}
       <div className="mt-2 text-center">
         <h3 className="text-sm font-semibold text-gray-900 line-clamp-2">{card.title}</h3>
-        <div className="flex items-center justify-center gap-1 text-lg font-bold text-green-600 mt-1">
+        <div className="flex items-center justify-center gap-2 text-lg font-bold text-green-600 mt-1">
           {card.price}
           <button
             onClick={handleInstagramClick}
