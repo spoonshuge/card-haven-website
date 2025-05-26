@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Instagram } from "lucide-react";
 import { SheetCard } from '@/utils/googleSheets';
 
 interface CardDisplayProps {
@@ -10,6 +11,11 @@ interface CardDisplayProps {
 
 const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleInstagramClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.open('https://instagram.com/spoonlabs', '_blank');
+  };
 
   return (
     <div className={className}>
@@ -61,7 +67,16 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
           </div>
           <div className="mt-4 text-center">
             <h2 className="text-2xl font-bold text-gray-900">{card.title}</h2>
-            <div className="text-xl font-bold text-green-600 mt-2">{card.price}</div>
+            <div className="flex items-center justify-center gap-2 text-xl font-bold text-green-600 mt-2">
+              {card.price}
+              <button
+                onClick={handleInstagramClick}
+                className="text-pink-600 hover:text-pink-700 transition-colors"
+                title="DM on Instagram"
+              >
+                <Instagram size={20} />
+              </button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
@@ -69,7 +84,16 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
       {/* Card Info */}
       <div className="mt-2 text-center">
         <h3 className="text-sm font-semibold text-gray-900 line-clamp-2">{card.title}</h3>
-        <div className="text-lg font-bold text-green-600 mt-1">{card.price}</div>
+        <div className="flex items-center justify-center gap-1 text-lg font-bold text-green-600 mt-1">
+          {card.price}
+          <button
+            onClick={handleInstagramClick}
+            className="text-pink-600 hover:text-pink-700 transition-colors"
+            title="DM on Instagram"
+          >
+            <Instagram size={16} />
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -82,6 +82,13 @@ const InventorySection = () => {
         </div>
       </div>
 
+      {/* Direct message box */}
+      <div className="bg-green-50/90 backdrop-blur-sm p-3 rounded-lg border border-green-200/50 shadow-sm">
+        <p className="text-green-800 text-sm text-center font-medium">
+          Direct is always cheapest, DM me.
+        </p>
+      </div>
+
       {filteredCards.length === 0 ? (
         <div className="text-center py-8 bg-white/80 backdrop-blur-sm rounded-xl border border-green-200/50">
           <p className="text-lg text-gray-700">No cards found matching your criteria.</p>
