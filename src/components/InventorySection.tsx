@@ -88,13 +88,13 @@ const InventorySection = () => {
           <p className="text-gray-500 mt-1">Try adjusting your search or filter settings.</p>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
           {filteredCards.map((card) => (
             <Card 
               key={card.id} 
               className="hover:shadow-xl transition-all duration-300 border-green-200/50 hover:border-green-400 bg-white/85 backdrop-blur-sm transform hover:-translate-y-2"
             >
-              <CardHeader className="p-4">
+              <CardHeader className="p-2">
                 <CardDisplay card={card} />
               </CardHeader>
             </Card>
