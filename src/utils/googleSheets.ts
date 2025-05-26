@@ -4,12 +4,13 @@
 
 export interface SheetCard {
   id: string;
-  name: string;
+  title: string;
+  frontImage: string;
+  backImage: string;
+  price: string;
   set: string;
   rarity: string;
-  price: string;
   quantity: number;
-  image: string;
   description: string;
   condition: string;
 }
@@ -64,14 +65,15 @@ export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
     
     return rawData.map((row, index) => ({
       id: row.id || `card-${index}`,
-      name: row.name || '',
-      set: row.set || '',
-      rarity: row.rarity || '',
-      price: row.price || '$0.00',
-      quantity: parseInt(row.quantity) || 0,
-      image: row.image || 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400',
-      description: row.description || '',
-      condition: row.condition || 'Unknown'
+      title: row.Title || row.title || '',
+      frontImage: row['Front Image'] || row.frontImage || 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400',
+      backImage: row['Back Image'] || row.backImage || 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400',
+      price: row.Price || row.price || '$0.00',
+      set: row.set || row.Set || '',
+      rarity: row.rarity || row.Rarity || '',
+      quantity: parseInt(row.quantity || row.Quantity) || 0,
+      description: row.description || row.Description || '',
+      condition: row.condition || row.Condition || 'Unknown'
     }));
   } catch (error) {
     console.error('Error fetching cards from Google Sheets:', error);

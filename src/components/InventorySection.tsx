@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import CardDisplay from './CardDisplay';
 import { fetchCardsFromSheet, SheetCard } from '@/utils/googleSheets';
 
 const InventorySection = () => {
@@ -27,7 +28,7 @@ const InventorySection = () => {
 
   const { filteredCards, rarities } = useMemo(() => {
     const filtered = cards.filter(card => {
-      const matchesSearch = card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      const matchesSearch = card.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            card.set.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesRarity = selectedRarity === "all" || card.rarity === selectedRarity;
       return matchesSearch && matchesRarity;
@@ -93,25 +94,9 @@ const InventorySection = () => {
               key={card.id} 
               className="hover:shadow-xl transition-all duration-300 border-green-200/50 hover:border-green-400 bg-white/85 backdrop-blur-sm transform hover:-translate-y-2"
             >
-              <CardHeader className="p-0">
-                <div className="w-full" style={{ aspectRatio: '2/3' }}>
-                  <img 
-                    src={card.image} 
-                    alt={card.name}
-                    className="w-full h-full object-cover rounded-t-lg"
-                    onError={(e) => {
-                      e.currentTarget.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400';
-                    }}
-                  />
-                </div>
+              <CardHeader className="p-4">
+                <CardDisplay card={card} />
               </CardHeader>
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold mb-2 text-gray-900">{card.name}</h3>
-                <div className="space-y-1">
-                  <div className="text-xl font-bold text-green-600">{card.price}</div>
-                  <div className="text-sm text-gray-600">Condition: {card.condition}</div>
-                </div>
-              </CardContent>
             </Card>
           ))}
         </div>
