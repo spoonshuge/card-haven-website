@@ -27,7 +27,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
               alt={card.title}
               className="w-full h-full object-contain rounded-lg transition-opacity duration-300 border-2 border-gray-300 bg-white p-1"
               onError={(e) => {
-                e.currentTarget.src = '/lovable-uploads/76562bbc-0bbc-46bc-ae80-4fb0a2f0dce7.png';
+                e.currentTarget.src = '/lovable-uploads/da796c7a-5329-4d08-ae52-f526dcbb271f.png';
               }}
             />
           </div>
@@ -43,7 +43,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
                 alt={`${card.title} - Front`}
                 className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 bg-white p-2"
                 onError={(e) => {
-                  e.currentTarget.src = '/lovable-uploads/76562bbc-0bbc-46bc-ae80-4fb0a2f0dce7.png';
+                  e.currentTarget.src = '/lovable-uploads/da796c7a-5329-4d08-ae52-f526dcbb271f.png';
                 }}
               />
             </div>
@@ -54,7 +54,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
                 alt={`${card.title} - Back`}
                 className="w-full h-auto object-contain rounded-lg border-2 border-gray-300 bg-white p-2"
                 onError={(e) => {
-                  e.currentTarget.src = '/lovable-uploads/76562bbc-0bbc-46bc-ae80-4fb0a2f0dce7.png';
+                  e.currentTarget.src = '/lovable-uploads/da796c7a-5329-4d08-ae52-f526dcbb271f.png';
                 }}
               />
             </div>

@@ -91,7 +91,7 @@ const CardInventory = ({ cards: propCards }: CardInventoryProps) => {
                 alt={card.title}
                 className="w-full h-48 object-cover rounded-t-lg"
                 onError={(e) => {
-                  e.currentTarget.src = '/lovable-uploads/8ccf9512-2012-4e5d-851a-7bdcb5f6ebc4.png';
+                  e.currentTarget.src = '/lovable-uploads/da796c7a-5329-4d08-ae52-f526dcbb271f.png';
                 }}
               />
             </CardHeader>

@@ -1,4 +1,3 @@
-
 // Google Sheets API integration for GitHub Pages
 // This utility handles fetching data from Google Sheets for static deployment
 
@@ -31,7 +30,7 @@ const SHEETS_CONFIG = {
   BLOG_GID: '596757522',
 } as const;
 
-const DEFAULT_PLACEHOLDER = '/lovable-uploads/8ccf9512-2012-4e5d-851a-7bdcb5f6ebc4.png';
+const DEFAULT_PLACEHOLDER = '/lovable-uploads/da796c7a-5329-4d08-ae52-f526dcbb271f.png';
 
 const getSheetCSVUrl = (sheetId: string, gid: string): string => {
   return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
