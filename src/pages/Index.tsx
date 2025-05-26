@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
@@ -8,7 +7,6 @@ import Footer from "@/components/Footer";
 import InventorySection from "@/components/InventorySection";
 import BlogSection from "@/components/BlogSection";
 import ConnectSection from "@/components/ConnectSection";
-import { mockCards } from "@/data/mockData";
 import { fetchBlogFromSheet, type SheetBlogPost } from "@/utils/googleSheets";
 
 const Index = () => {
@@ -44,7 +42,7 @@ const Index = () => {
         return (
           <div className="space-y-32">
             <Hero onBrowseClick={() => setCurrentSection("inventory")} />
-            <FeaturedCards cards={mockCards} />
+            <FeaturedCards />
             <AboutSection />
           </div>
         );
