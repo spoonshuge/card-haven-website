@@ -1,8 +1,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
 import { fetchCardsFromSheet, SheetCard } from '@/utils/googleSheets';
 
@@ -88,42 +87,29 @@ const InventorySection = () => {
           <p className="text-gray-500 mt-1">Try adjusting your search or filter settings.</p>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredCards.map((card) => (
             <Card 
               key={card.id} 
               className="hover:shadow-xl transition-all duration-300 border-green-200/50 hover:border-green-400 bg-white/85 backdrop-blur-sm transform hover:-translate-y-2"
             >
               <CardHeader className="p-0">
-                <img 
-                  src={card.image} 
-                  alt={card.name}
-                  className="w-full h-48 object-cover rounded-t-lg"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400';
-                  }}
-                />
+                <div className="w-full" style={{ aspectRatio: '2/3' }}>
+                  <img 
+                    src={card.image} 
+                    alt={card.name}
+                    className="w-full h-full object-cover rounded-t-lg"
+                    onError={(e) => {
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400';
+                    }}
+                  />
+                </div>
               </CardHeader>
               <CardContent className="p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <CardTitle className="text-lg">{card.name}</CardTitle>
-                  <Badge variant="secondary" className="bg-orange-100 text-orange-800">
-                    {card.rarity}
-                  </Badge>
-                </div>
-                <p className="text-sm text-gray-600 mb-2">{card.set}</p>
-                <CardDescription className="mb-3">{card.description}</CardDescription>
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-xl font-bold text-green-600">{card.price}</span>
-                  <Badge 
-                    variant={card.quantity > 0 ? "default" : "destructive"} 
-                    className={card.quantity > 0 ? "bg-green-100 text-green-800" : ""}
-                  >
-                    {card.quantity > 0 ? `${card.quantity} available` : "Sold Out"}
-                  </Badge>
-                </div>
-                <div className="text-sm text-gray-500">
-                  Condition: {card.condition}
+                <h3 className="text-lg font-semibold mb-2 text-gray-900">{card.name}</h3>
+                <div className="space-y-1">
+                  <div className="text-xl font-bold text-green-600">{card.price}</div>
+                  <div className="text-sm text-gray-600">Condition: {card.condition}</div>
                 </div>
               </CardContent>
             </Card>
