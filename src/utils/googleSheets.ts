@@ -8,6 +8,7 @@ export interface SheetCard {
   backImage: string;
   price: string;
   set: string;
+  subset: string;
   rarity: string;
   quantity: number;
   description: string;
@@ -71,6 +72,7 @@ export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
       backImage: row['Back Image'] || row.backImage || DEFAULT_PLACEHOLDER,
       price: row.Price || row.price || '$0.00',
       set: row.set || row.Set || '',
+      subset: row.subset || row.Subset || '',
       rarity: row.rarity || row.Rarity || '',
       quantity: parseInt(row.quantity || row.Quantity) || 0,
       description: row.description || row.Description || '',

@@ -83,8 +83,11 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
       
       {/* Card Info */}
       <div className="mt-2 text-center">
-        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2">{card.title}</h3>
-        <div className="flex items-center justify-center gap-2 text-lg font-bold text-green-600 mt-1">
+        <div className="text-xs text-gray-600 mb-1">
+          {card.set} {card.subset}
+        </div>
+        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mb-1">{card.title}</h3>
+        <div className="flex items-center justify-center gap-2 text-lg font-bold text-green-600">
           {card.price}
           <button
             onClick={handleInstagramClick}
