@@ -1,3 +1,4 @@
+
 // Google Sheets API integration for GitHub Pages
 // This utility handles fetching data from Google Sheets for static deployment
 
@@ -13,6 +14,20 @@ export interface SheetCard {
   quantity: number;
   description: string;
   condition: string;
+  player: string;
+  sport: string;
+  manufacturer: string;
+  season: string;
+  features: string;
+  grade: string;
+  league: string;
+  grader: string;
+  team: string;
+  auto: string;
+  cardNumber: string;
+  certNumber: string;
+  type: string;
+  printRun: string;
 }
 
 export interface SheetBlogPost {
@@ -71,12 +86,26 @@ export const fetchCardsFromSheet = async (): Promise<SheetCard[]> => {
       frontImage: row['Front Image'] || row.frontImage || DEFAULT_PLACEHOLDER,
       backImage: row['Back Image'] || row.backImage || DEFAULT_PLACEHOLDER,
       price: row.Price || row.price || '$0.00',
-      set: row.set || row.Set || '',
-      subset: row.subset || row.Subset || '',
+      set: row.Set || row.set || '',
+      subset: row.Subset || row.subset || '',
       rarity: row.rarity || row.Rarity || '',
       quantity: parseInt(row.quantity || row.Quantity) || 0,
       description: row.description || row.Description || '',
-      condition: row.condition || row.Condition || 'Unknown'
+      condition: row.Condition || row.condition || 'Unknown',
+      player: row.Player || row.player || '',
+      sport: row.Sport || row.sport || '',
+      manufacturer: row.Manufacturer || row.manufacturer || '',
+      season: row.Season || row.season || '',
+      features: row.Features || row.features || '',
+      grade: row.Grade || row.grade || '',
+      league: row.League || row.league || '',
+      grader: row.Grader || row.grader || '',
+      team: row.Team || row.team || '',
+      auto: row.Auto || row.auto || '',
+      cardNumber: row['Card Number'] || row.cardNumber || '',
+      certNumber: row['Cert Number'] || row.certNumber || '',
+      type: row.Type || row.type || '',
+      printRun: row['Print Run'] || row.printRun || ''
     }));
   } catch (error) {
     console.error('Error fetching cards from Google Sheets:', error);

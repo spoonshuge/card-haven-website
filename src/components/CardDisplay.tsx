@@ -17,18 +17,6 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
     window.open('https://instagram.com/spoonlabs', '_blank');
   };
 
-  // Extract player name from title by removing set info and card numbers
-  const extractPlayerName = (title: string) => {
-    // Remove patterns like "2025 Bowman #BCP-121" and "Chrome Prospects" from the title
-    return title
-      .replace(/^\d{4}\s+\w+\s+#?[A-Z]+-?\d+\s+/, '') // Remove year, set, and card number
-      .replace(/\s+(Chrome\s+)?Prospects?$/i, '') // Remove "Chrome Prospects" or "Prospects" at the end
-      .replace(/\s+Chrome$/i, '') // Remove "Chrome" at the end
-      .trim();
-  };
-
-  const playerName = extractPlayerName(card.title);
-
   return (
     <div className={className}>
       {/* Card Image with Hover Effect */}
@@ -98,7 +86,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
         <div className="text-xs text-gray-600 mb-1">
           {card.set} {card.subset}
         </div>
-        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mb-1">{playerName}</h3>
+        <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 mb-1">{card.player}</h3>
         <div className="flex items-center justify-center gap-2 text-lg font-bold text-green-600">
           {card.price}
           <button
