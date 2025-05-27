@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Instagram } from "lucide-react";
 import { SheetCard } from '@/utils/googleSheets';
+import { useToast } from "@/hooks/use-toast";
 
 interface CardDisplayProps {
   card: SheetCard;
@@ -11,10 +12,32 @@ interface CardDisplayProps {
 
 const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { toast } = useToast();
 
-  const handleInstagramClick = (e: React.MouseEvent) => {
+  const handleInstagramClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.open('https://instagram.com/spoonlabs', '_blank');
+    
+    // Format card details for copying
+    const cardDetails = `${card.title} - ${card.player} - ${card.set} ${card.subset} - ${card.price}`;
+    
+    try {
+      // Copy to clipboard
+      await navigator.clipboard.writeText(cardDetails);
+      toast({
+        title: "Card details copied!",
+        description: "Card information has been copied to your clipboard.",
+      });
+    } catch (error) {
+      console.error('Failed to copy to clipboard:', error);
+      toast({
+        title: "Copy failed",
+        description: "Unable to copy to clipboard. Please copy manually.",
+        variant: "destructive",
+      });
+    }
+    
+    // Open Instagram Direct Messages
+    window.open('https://instagram.com/direct/new/', '_blank');
   };
 
   return (
@@ -72,7 +95,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
               <button
                 onClick={handleInstagramClick}
                 className="text-pink-600 hover:text-pink-700 transition-colors"
-                title="DM on Instagram"
+                title="Copy details & DM on Instagram"
               >
                 <Instagram size={20} />
               </button>
@@ -92,7 +115,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
           <button
             onClick={handleInstagramClick}
             className="text-pink-600 hover:text-pink-700 transition-colors"
-            title="DM on Instagram"
+            title="Copy details & DM on Instagram"
           >
             <Instagram size={16} />
           </button>
