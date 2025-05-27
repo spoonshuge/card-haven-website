@@ -1,35 +1,36 @@
 
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import CardDisplay from './CardDisplay';
-import { fetchCardsFromSheet, SheetCard } from '@/utils/googleSheets';
+import LoadingSkeleton from './LoadingSkeleton';
+import { useData } from '@/contexts/DataContext';
 
 const FeaturedCards = () => {
-  const [cards, setCards] = useState<SheetCard[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { cards, isLoadingCards, error } = useData();
 
-  useEffect(() => {
-    const loadCards = async () => {
-      try {
-        const fetchedCards = await fetchCardsFromSheet();
-        setCards(fetchedCards);
-      } catch (error) {
-        console.error('Failed to load cards:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadCards();
-  }, []);
+  if (error) {
+    return (
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <div className="bg-white/80 backdrop-blur-sm p-12 rounded-xl border border-red-200/50 shadow-lg">
+            <div className="text-center py-8">
+              <p className="text-lg text-red-700">Error loading featured cards</p>
+              <p className="text-red-500 mt-1">{error}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
-  if (loading) {
+  if (isLoadingCards) {
     return (
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="bg-white/80 backdrop-blur-sm p-12 rounded-xl border border-green-200/50 shadow-lg relative overflow-hidden">
-            <div className="flex justify-center items-center py-8">
-              <div className="text-lg text-gray-500">Loading featured goods...</div>
-            </div>
+            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-green-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
+              Featured Goods
+            </h2>
+            <LoadingSkeleton type="featured" />
           </div>
         </div>
       </section>

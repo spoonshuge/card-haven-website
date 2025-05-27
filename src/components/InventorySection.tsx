@@ -1,86 +1,55 @@
 
-import { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Card, CardHeader } from "@/components/ui/card";
 import CardDisplay from './CardDisplay';
-import { fetchCardsFromSheet, SheetCard } from '@/utils/googleSheets';
+import FilterControls from './FilterControls';
+import LoadingSkeleton from './LoadingSkeleton';
+import { useData } from '@/contexts/DataContext';
+import { useCardFilters } from '@/hooks/useCardFilters';
 
 const InventorySection = () => {
-  const [cards, setCards] = useState<SheetCard[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedRarity, setSelectedRarity] = useState("all");
-  const [loading, setLoading] = useState(true);
+  const { cards, isLoadingCards, error } = useData();
+  const {
+    searchTerm,
+    setSearchTerm,
+    selectedRarity,
+    setSelectedRarity,
+    filteredCards,
+    rarities,
+  } = useCardFilters(cards);
 
-  useEffect(() => {
-    const loadCards = async () => {
-      try {
-        const fetchedCards = await fetchCardsFromSheet();
-        setCards(fetchedCards);
-      } catch (error) {
-        console.error('Failed to load cards:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadCards();
-  }, []);
+  if (error) {
+    return (
+      <div className="space-y-6">
+        <div className="text-center py-8 bg-red-50/90 backdrop-blur-sm rounded-xl border border-red-200/50">
+          <p className="text-lg text-red-700">Error loading inventory</p>
+          <p className="text-red-500 mt-1">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
-  const { filteredCards, rarities } = useMemo(() => {
-    const filtered = cards.filter(card => {
-      const matchesSearch = card.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           card.set.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesRarity = selectedRarity === "all" || card.rarity === selectedRarity;
-      return matchesSearch && matchesRarity;
-    });
-
-    const uniqueRarities = ["all", ...Array.from(new Set(cards.map(card => card.rarity)))];
-
-    return { filteredCards: filtered, rarities: uniqueRarities };
-  }, [cards, searchTerm, selectedRarity]);
-
-  if (loading) {
+  if (isLoadingCards) {
     return (
       <div className="space-y-6">
         <div className="flex justify-center items-center py-8">
           <div className="text-lg text-gray-500">Loading inventory...</div>
         </div>
+        <LoadingSkeleton count={12} type="card" />
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      {/* Floating search and filter controls */}
-      <div className="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-green-200/50 shadow-lg sticky top-20 z-40">
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Search cards..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 border-green-200 focus:border-green-400 bg-white/80"
-            />
-          </div>
-          <div className="flex items-center gap-4">
-            <select
-              value={selectedRarity}
-              onChange={(e) => setSelectedRarity(e.target.value)}
-              className="px-4 py-2 border border-green-200 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white/80"
-            >
-              {rarities.map(rarity => (
-                <option key={rarity} value={rarity}>
-                  {rarity === "all" ? "All Rarities" : rarity}
-                </option>
-              ))}
-            </select>
-            <div className="text-sm text-gray-600 whitespace-nowrap">
-              {filteredCards.length} of {cards.length} cards
-            </div>
-          </div>
-        </div>
-      </div>
+      <FilterControls
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+        selectedRarity={selectedRarity}
+        onRarityChange={setSelectedRarity}
+        rarities={rarities}
+        totalCards={cards.length}
+        filteredCount={filteredCards.length}
+      />
 
       {/* Direct message box */}
       <div className="bg-green-50/90 backdrop-blur-sm p-3 rounded-lg border border-green-200/50 shadow-sm">

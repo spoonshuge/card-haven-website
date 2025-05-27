@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+
+import { useState } from 'react';
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import FeaturedCards from "@/components/FeaturedCards";
@@ -7,28 +8,11 @@ import Footer from "@/components/Footer";
 import InventorySection from "@/components/InventorySection";
 import BlogSection from "@/components/BlogSection";
 import ConnectSection from "@/components/ConnectSection";
-import { fetchBlogFromSheet, type SheetBlogPost } from "@/utils/googleSheets";
+import { DataProvider, useData } from "@/contexts/DataContext";
 
-const Index = () => {
+const IndexContent = () => {
   const [currentSection, setCurrentSection] = useState("home");
-  const [blogPosts, setBlogPosts] = useState<SheetBlogPost[]>([]);
-  const [isLoadingBlog, setIsLoadingBlog] = useState(false);
-
-  useEffect(() => {
-    const loadBlogPosts = async () => {
-      setIsLoadingBlog(true);
-      try {
-        const posts = await fetchBlogFromSheet();
-        setBlogPosts(posts);
-      } catch (error) {
-        console.error('Failed to load blog posts:', error);
-      } finally {
-        setIsLoadingBlog(false);
-      }
-    };
-
-    loadBlogPosts();
-  }, []);
+  const { blogPosts, isLoadingBlog } = useData();
 
   const renderContent = () => {
     switch (currentSection) {
@@ -70,6 +54,14 @@ const Index = () => {
       </main>
       <Footer onSectionChange={setCurrentSection} />
     </div>
+  );
+};
+
+const Index = () => {
+  return (
+    <DataProvider>
+      <IndexContent />
+    </DataProvider>
   );
 };
 
