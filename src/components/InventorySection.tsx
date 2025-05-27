@@ -56,6 +56,9 @@ const InventorySection = () => {
         <p className="text-green-800 text-sm text-center font-medium">
           Direct is always cheapest, DM me.
         </p>
+        <p className="text-green-700 text-xs text-center mt-1">
+          Use the Instagram button to copy card details and make an offer!
+        </p>
       </div>
 
       {filteredCards.length === 0 ? (

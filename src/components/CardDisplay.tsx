@@ -16,6 +16,7 @@ const CardDisplay = ({ card, className = "" }: CardDisplayProps) => {
 
   const handleInstagramClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     
     // Format card details for copying
     const cardDetails = `${card.title} - ${card.player} - ${card.set} ${card.subset} - ${card.price}`;
